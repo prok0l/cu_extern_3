@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    <form action="/weather" method="post">
+        <div class="form-group">
+            <label for="start_city">Начальная точка:</label>
+            <input type="text" class="form-control" id="start_city" name="start_city" required
+            placeholder="Введите начальную точку">
+        </div>
+        <div class="form-group">
+            <label for="finish_city">Конечная точка:</label>
+            <input type="text" class="form-control" id="finish_city" name="finish_city" required
+            placeholder="Введите конечную точку">
+        </div>
+        <div id="stops">
+        </div>
+        <br>
+        <button type="button" class="btn btn-secondary" onclick="addStop()">Добавить промежуточную точку</button>
+
+        <br><br>
+
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+
+<script>
+    function addStop() {
+        const stopsContainer = document.getElementById('stops');
+        const input = document.createElement('input');
+        const inputDiv = document.createElement('div');
+        const label = document.createElement('label');
+
+        inputDiv.className = 'form-group';
+        input.type = 'text';
+        input.name = 'stops';
+        input.className = 'form-control';
+        input.placeholder = 'Введите промежуточную точку';
+
+        input.id = 'stops-input';
+
+        label.textContent = 'Промежуточная точка';
+        label.htmlFor = 'stops-input';
+
+        inputDiv.appendChild(label);
+        inputDiv.appendChild(input);
+        stopsContainer.appendChild(inputDiv);
+
+    }
+</script>
+{% endblock %}
